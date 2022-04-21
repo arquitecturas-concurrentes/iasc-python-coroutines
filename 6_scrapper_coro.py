@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 def get_urls_from_root(root_url):
     soup = BeautifulSoup(reqs.text, 'html.parser')
-    return soup.find_all('a'):
+    return soup.find_all('a')
 
 async def fetch(url):
     await r = get_non_block(url)
