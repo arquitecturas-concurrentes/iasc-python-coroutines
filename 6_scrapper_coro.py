@@ -21,8 +21,9 @@ async def parse_response(status_code, url):
 async def main():
     root_url = sys.argv[1]
     urls = [link.get('href') for link in get_urls_from_root(root_url)]
+    local_urls = [url for url in urls if url.startswith('/')]
 
-    for url in urls:
+    for url in local_urls:
         task = asyncio.create_task(fetch(root_url, url))
         await task
 
