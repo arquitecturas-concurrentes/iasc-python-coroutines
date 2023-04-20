@@ -13,7 +13,8 @@ cuenta_regresiva(5)
 def fibonacci():
   a, b = 0, 1
   while True:
-    yield a
+    c = yield a
+    print(c)
     a, b = b, a+b
 
 for numero in fibonacci():  # Utilización de generador como iterador
