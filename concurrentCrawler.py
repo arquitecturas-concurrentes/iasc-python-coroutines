@@ -4,12 +4,12 @@ import threading
 from bs4 import BeautifulSoup
 
 def get_urls_from_root(root_url):
-    soup = BeautifulSoup(reqs.text, 'html.parser')
+    soup = BeautifulSoup(root_url, 'html.parser')
     return soup.find_all('a')
 
 def fetch(url):
     sock = socket.socket()
-    sock.connect(('bla.com', 80))
+    sock.connect((url, 80))
     request = 'GET {} HTTP/1.0\r\nHost: bla.com\r\n\r\n'.format(url)
     sock.send(request.encode('ascii'))
     response = b''
@@ -25,5 +25,5 @@ if __name__ == '__main__':
     urls = [link.get('href') for link in get_urls_from_root(root_url)]
 
     for url in urls:
-        t = threading.Thread(target=fetch, args=(i,))
+        t = threading.Thread(target=fetch, args=(url))
         t.start()
