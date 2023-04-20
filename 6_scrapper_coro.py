@@ -10,13 +10,11 @@ def get_urls_from_root(root_url):
     return soup.find_all('a')
 
 async def fetch(root_url, url):
-    full_url = root_url+url
-    r = await aiohttp.request('GET', full_url)
-    await parse_response(r.status_code, full_url) #Content of the response, in bytes
-
-async def parse_response(status_code, url):
-    if status_code == 200:
-      print(url)
+    async with aiohttp.ClientSession() as session:
+        full_url = root_url+url
+        async with session.get(full_url) as resp:
+            if resp.status == 200:
+                print(full_url)
 
 async def main():
     root_url = sys.argv[1]
