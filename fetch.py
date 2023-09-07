@@ -1,5 +1,6 @@
 def fetch(url):
     sock = socket.socket()
+    sock.setblocking(False)
     sock.connect(('bla.com', 80))
     request = 'GET {} HTTP/1.0\r\nHost: bla.com\r\n\r\n'.format(url)
     sock.send(request.encode('ascii'))
