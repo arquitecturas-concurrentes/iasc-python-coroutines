@@ -39,7 +39,7 @@ def read_response(ssock, url):
             logging.debug(f'receiving {len(data)} bytes data...')
             response += data
             if not data or all_data_received(response):
-                print("closing connection")
+                logging.debug("Done. Closing connection.")
                 ssock.close()
                 break
     except socket.timeout as e:
