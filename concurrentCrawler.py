@@ -38,7 +38,7 @@ def read_response(ssock, url):
             data = ssock.recv(4096)
             logging.debug(f'receiving {len(data)} bytes data...')
             response += data
-            if not data or attempt_full_lenght(response) == len(response):
+            if not data or all_data_received(response):
                 print("closing connection")
                 ssock.close()
                 break
@@ -46,6 +46,9 @@ def read_response(ssock, url):
         logging.debug(f'Timeout out for {url}.')
     ssock.close()
     return response
+
+def all_data_received(response):
+    return attempt_full_lenght(response) == len(response)
 
 def attempt_full_lenght(data):
     header, _body = separate_header_and_body(data)
