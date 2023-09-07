@@ -34,17 +34,22 @@ def fetch(root_url, url):
 def read_response(ssock, url):
     response = b''
     try:
-        data = ssock.recv(4096)
-        while data:
-            response += data
+        while True:
             data = ssock.recv(4096)
             logging.debug(f'receiving {len(data)} bytes data...')
-            if len(data) <= 0:
+            response += data
+            if not data or attempt_full_lenght(response) == len(response):
+                print("closing connection")
+                ssock.close()
                 break
     except socket.timeout as e:
         logging.debug(f'Timeout out for {url}.')
     ssock.close()
     return response
+
+def attempt_full_lenght(data):
+    header, _body = separate_header_and_body(data)
+    return get_content_length(header) + len(header)
 
 def parse_response(response, url):
     print(f'Received response from {url}')
