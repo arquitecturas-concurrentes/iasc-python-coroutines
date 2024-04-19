@@ -1,5 +1,4 @@
 sock = socket.socket()
-sock.setblocking(False)
 try:
     sock.connect(('bla.com', 80))
 except BlockingIOError:
@@ -13,10 +12,7 @@ selector = DefaultSelector()
 
 sock = socket.socket()
 sock.setblocking(False)
-try:
-    sock.connect(('bla.com', 80))
-except BlockingIOError:
-    pass
+sock.connect(('bla.com', 80))
 
 def connected():
     selector.unregister(sock.fileno())
@@ -31,4 +27,4 @@ def loop():
             callback = event_key.data
             callback()
 
-loop()            
+loop()

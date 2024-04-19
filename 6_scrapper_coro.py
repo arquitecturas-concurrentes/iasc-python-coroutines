@@ -26,4 +26,4 @@ async def main():
         await task
 
 asyncio.run(main())
-# python3 6_scrapper_coro.py http://xcd.com
+# python3 6_scrapper_coro.py http://xkcd.com

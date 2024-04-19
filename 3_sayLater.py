@@ -6,7 +6,7 @@ async def say_after(delay, what):
   print(what)
 
 async def main():
-  await say_after(1, 'hello')
+  await say_after(5, 'hello')
   await say_after(2, 'world')
 
 if __name__ == '__main__':

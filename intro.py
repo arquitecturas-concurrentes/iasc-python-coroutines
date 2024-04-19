@@ -25,4 +25,4 @@ if __name__ == '__main__':
     for url in local_urls:
         t = threading.Thread(target=fetch, args=(root_url, url))
         t.start()
-# python3 intro.py http://xcd.com
+# python3 intro.py http://xkcd.com

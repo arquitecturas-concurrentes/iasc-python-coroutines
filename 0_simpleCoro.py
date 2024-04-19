@@ -10,7 +10,7 @@ def cuenta_regresiva(numero):
 def coro():
   #yield usado de esta forma creamos una corrutina que hace más que generar valores, si no que también consume
   hello = yield "Soy una corrutina"
-  yield hello
+  yield
   yield hello
 
 c = coro()
