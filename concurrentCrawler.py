@@ -103,3 +103,5 @@ if __name__ == '__main__':
             continue
         t = threading.Thread(target=fetch, args=(root_url,url,))
         t.start()
+
+# python3 concurrentCrawler.py https://xkcd.com
