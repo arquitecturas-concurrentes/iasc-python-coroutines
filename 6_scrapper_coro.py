@@ -20,10 +20,11 @@ async def main():
     root_url = sys.argv[1]
     urls = [link.get('href') for link in get_urls_from_root(root_url)]
     local_urls = [url for url in urls if url.startswith('/')]
+    tasks = []
 
     for url in local_urls:
-        task = asyncio.create_task(fetch(root_url, url))
-        await task
+        tasks.append(asyncio.create_task(fetch(root_url, url)))
+    await asyncio.gather(*tasks)
 
 asyncio.run(main())
 # python3 6_scrapper_coro.py http://xkcd.com

@@ -9,7 +9,7 @@ async def print_re_loco(algo):
 
 def main():
   print_loco('algo')
-  coro = print_re_loco('algo')
+  coro = print_re_loco('c algo')
   asyncio.run(coro)
 
 if __name__ == '__main__':
